@@ -1,0 +1,140 @@
+h1{
+  text-align: center;
+  color: #6c63ff;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  cursor: pointer;
+}
+
+label{
+  font-weight: 700;
+  color: lightsalmon;
+}
+
+input[type="text"],
+input[type="number"],
+input[type = "email"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  font-size: 16px;
+}
+
+input[type="submit"],
+button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  background-color: #6c63ff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover,
+button:hover {
+  background-color: #524dff;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  font-size: large;
+}
+
+th{
+  color:lightcoral;
+}
+
+table th,
+table td {
+  padding: 4px;
+  width: auto;
+  text-align: left;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-weight: 600;
+}
+
+table th {
+  background-color: #f9f9f9;
+  font-weight: bold;
+}
+
+.btn-edit{
+   width: 100%;
+   color: rgb(252, 252, 252);
+   background-color: #534dffdd;
+}
+
+.btn-edit:hover{
+ color: rgb(255, 255, 255);
+ background-color:  rgb(63, 233, 63);
+}
+
+
+.btn-trash{
+  width: 100%;
+  border: none;
+  background-color: #534dffdd;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+
+.btn-trash:hover{
+  color: rgb(255, 255, 255);
+  background-color: red;
+}
+
+
+
+.btn-save {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  background-color: "${isEditing ? 'lightgreen' : '#6c63ff'}";
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-add {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  background-color: "${isEditing ? '#6c63ff' : 'red'}";
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
