@@ -101,6 +101,7 @@ function Crud () {
 </p>
     </form>
     <br/>
+    <h2>Details</h2>
     <table>
       <thead>
         <tr>
