@@ -8,10 +8,10 @@ function Crud () {
 
   const [formdata , setFormdata] = useState({
     id : "",
-    name : "surya",
-    age : "23",
+    name : "",
+    age : "",
     email : "",
-    city : "salem"
+    city : ""
   });
   const [editMode , setEditMode] = useState();
   const [editindex ,setEditIndex] = useState();
