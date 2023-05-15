@@ -60,7 +60,7 @@ function Crud () {
   }
   return(
     <>
-    <h1><u>C R U D</u></h1>
+    <h1><u>Registration Form</u></h1>
     <form onSubmit={formhandler}>
       <label>Username</label>
       <input 
