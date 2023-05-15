@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './Crud.css'
-import { ExclamationOctagonFill, PenFill, PencilFill, PencilSquare, Trash2Fill, Trash3Fill } from "react-bootstrap-icons";
+import { ExclamationOctagonFill, PencilSquare, Trash3Fill } from "react-bootstrap-icons";
 
 
 function Crud () {
