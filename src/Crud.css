@@ -130,8 +130,36 @@ table th {
 .btn-trash:hover {
   color: #fff;
   background-color: #ff0000;
-  transition: 0.3s;
+border-radius: 3rem;
 }
+
+body {
+  background-color: #222;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.animate {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  animation-name: slideInFromLeft;
+}
+
+
 
 body {
   background-color: #222;

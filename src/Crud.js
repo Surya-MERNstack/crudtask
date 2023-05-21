@@ -67,6 +67,7 @@ const  Crud = () => {
       </h1>
       <div class="crud-form animate">
       <div className="crud-container">
+    
         <form className="crud-form" onSubmit={handleSubmit}>
           <label>Username</label>
           <input
