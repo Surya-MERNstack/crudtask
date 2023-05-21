@@ -1,135 +1,173 @@
 import React, { useState } from "react";
-import './Crud.css'
 import { ExclamationOctagonFill, PencilSquare, Trash3Fill } from "react-bootstrap-icons";
+import './Crud.css';
 
-
-function Crud () {
-  const [data ,setData] = useState([]);
-
-  const [formdata , setFormdata] = useState({
-    id : "",
-    name : "",
-    age : "",
-    email : "",
-    city : ""
+const  Crud = () => {
+  const [data, setData] = useState([]);
+  const [formData, setFormData] = useState({
+    id: "",
+    name: "",
+    age: "",
+    email: "",
+    city: ""
   });
-  const [editMode , setEditMode] = useState();
-  const [editindex ,setEditIndex] = useState();
-  const [formerror ,setFormerror] = useState("")
-  const changehandler = (e) => {
-    const {name ,value} = e.target
-    setFormdata({
-     ...formdata ,[name] : value
-    })
-  }
+  const [editMode, setEditMode] = useState(false);
+  const [editIndex, setEditIndex] = useState(null);
+  const [formError, setFormError] = useState("");
 
-  const formhandler = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if(!formdata.name || !formdata.age || !formdata.city){
-      setFormerror("Please Fill the form!")
+    if (!formData.name || !formData.age || !formData.city) {
+      setFormError("Please fill in all fields.");
       return;
     }
-     if(editMode) {
-      setData(
-        data.map((items ,dataindex) => {
-           if(dataindex === editindex) {
-            return {...data , ...formdata}
-           }
-           return items
-        })
-      )
-      setEditIndex(null)
-      setEditMode(false)
-     }else{
-       setData([...data, {...formdata , id : data.length + 1}])
-     }
-     setFormdata({name : "" , age : "" ,email : "" ,city : ""})
-      setFormerror("")
-  }
+    if (editMode) {
+      setData((prevData) =>
+        prevData.map((item, index) =>
+          index === editIndex ? { ...item, ...formData } : item
+        )
+      );
+      setEditIndex(null);
+      setEditMode(false);
+    } else {
+      setData((prevData) => [...prevData, { ...formData, id: prevData.length + 1 }]);
+    }
+    setFormData({
+      id: "",
+      name: "",
+      age: "",
+      email: "",
+      city: ""
+    });
+    setFormError("");
+  };
 
-  const edithandler = (index) =>{
-   setFormdata(data[index])
-   setEditMode(true)
-   setEditIndex(index)
-  }
+  const handleEdit = (index) => {
+    setFormData(data[index]);
+    setEditMode(true);
+    setEditIndex(index);
+  };
 
-  const delethandler = (index) => {
-    setData(
-      data.filter((items,indexs) => indexs !== index)
-    )
-  }
-  return(
+  const handleDelete = (index) => {
+    setData((prevData) => prevData.filter((_, i) => i !== index));
+  };
+
+  return (
     <>
-    <h1><u>Registration Form</u></h1>
-    <form onSubmit={formhandler}>
-      <label>Username</label>
-      <input 
-      type="text" 
-      name="name"
-      placeholder="username"
-      value={formdata.name}
-      onChange={changehandler}
-      /><br/>
-      <label>Age</label>
-      <input 
-      type="number"
-      placeholder="age"
-      name="age"
-      value={formdata.age}
-      onChange={changehandler} 
-      /><br/>
-      <label>Email</label>
-        <input 
-      type="email"
-      placeholder="@gmail.com"
-      name="email"
-      value={formdata.email}
-      onChange={changehandler} 
-      /><br/>
-      <label>City</label>
-      <input 
-      type="text"
-      name="city"
-      placeholder="city"
-      value={formdata.city}
-      onChange={changehandler}
-      />
-      <button style={{backgroundColor: editMode ? 'rgb(20, 223, 20)' : 'red'}}>
-  {editMode ? "Save" : "Add"}
-</button>
-      <p>{formerror && <div style={{ color: "red" }}><ExclamationOctagonFill/> {formerror}</div>}
-</p>
-    </form>
-    <br/>
-    <h2>Details</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Email</th>
-          <th>City</th>
-          <th>Customize</th>
-        </tr>
-       </thead>
-       <tbody>
-            {
-              data.map((items , index) => (
-              <tr key={items.id}>
-                <td>{items.id}</td>
-                <td>{items.name}</td>
-                <td>{items.age}</td>
-                <td>{items.email}</td>
-                <td>{items.city}</td>
-                <td><button onClick={() => edithandler(index)}  className="btn-edit"><PencilSquare/></button>
-                <button onClick={() => delethandler(index)} className="btn-trash"><Trash3Fill/></button></td>
+      <h1 style={{ textAlign: "center", color: "rgb(255, 152, 111)" }}>
+        <u>Registration Form</u>
+      </h1>
+      <div class="crud-form animate">
+      <div className="crud-container">
+        <form className="crud-form" onSubmit={handleSubmit}>
+          <label>Username</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Username"
+            value={formData.name}
+            title="Username"
+            onChange={handleChange}
+          />
+          <br />
+          <label>Age</label>
+          <input
+            type="number"
+            placeholder="Age"
+            name="age"
+            title="Age"
+            value={formData.age}
+            onChange={handleChange}
+          />
+          <br />
+          <label>Email</label>
+          <input
+            type="email"
+            title="Email"
+            placeholder="@gmail.com"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          <br />
+          <label>City</label>
+          <input
+            type="text"
+            name="city"
+            title="City"
+            placeholder="City"
+            value={formData.city}
+            onChange={handleChange}
+          />
+          <button
+            className={`btn-${editMode ? 'edit' : 'add'}`}
+            style={{
+              backgroundColor: editMode ? "rgb(20, 223, 20)" : "",
+              cursor: "pointer"
+            }}
+          >
+            {editMode ? "Save" : "Add"}
+          </button>
+          {formError && (
+            <p style={{ color: "red" }}>
+              <ExclamationOctagonFill /> {formError}
+            </p>
+          )}
+        </form>
+        <div className="crud-table">
+          <h2 style={{ textAlign: "center", color: "rgb(255, 152, 111)" }}>Details</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>Customize</th>
               </tr>
-             ))}
-        </tbody>
-     </table>
+            </thead>
+            <tbody>
+              {data.map((item, index) => (
+                <tr key={item.id}>
+                  <td>{item.id}</td>
+                  <td>{item.name}</td>
+                  <td>{item.age}</td>
+                  <td>{item.email}</td>
+                  <td>{item.city}</td>
+                  <td>
+                    <button
+                      onClick={() => handleEdit(index)}
+                      className="btn-edit"
+                      title="Edit"
+                    >
+                      <PencilSquare />
+                    </button>
+                    <button
+                      onClick={() => handleDelete(index)}
+                      className="btn-trash"
+                      title="Delete"
+                    >
+                      <Trash3Fill />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
     </>
-  )
+  );
 }
 
-export  default Crud;
+export default Crud;

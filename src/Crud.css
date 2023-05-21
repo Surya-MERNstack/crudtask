@@ -1,31 +1,34 @@
-h1{
-  text-align: center;
-  color: rgb(255, 152, 111);
-}
-h2{
-  text-align: center;
-  color: rgb(255, 152, 111);
-}
-form {
+.crud-container {
   display: flex;
-  flex-direction: column;
-  width: 400px;
-  margin: 50px auto;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.crud-form {
+  flex: 1 1 400px;
+  margin: 20px;
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  background-color: #f9f9f9;
   cursor: pointer;
+  overflow: hidden;
 }
 
-label{
+.crud-table {
+  flex: 1 1 400px;
+}
+
+.crud-form label {
   font-weight: 700;
-  color: lightsalmon;
+  color: #333;
 }
 
-input[type="text"],
-input[type="number"],
-input[type = "email"] {
+.crud-form input[type="text"],
+.crud-form input[type="number"],
+.crud-form input[type="email"] {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
@@ -33,10 +36,10 @@ input[type = "email"] {
   border-radius: 5px;
   background-color: #f2f2f2;
   font-size: 16px;
+  color: #333;
 }
 
-input[type="submit"],
-button {
+.crud-form button {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
@@ -47,98 +50,111 @@ button {
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
-  cursor: pointer;
 }
 
-input[type="submit"]:hover,
-button:hover {
+.crud-form button.btn-edit {
+  background-color: #24b859;
+}
+
+.crud-form button:hover {
   background-color: #524dff;
+}
+
+.crud-form button.btn-edit:hover {
+  background-color: #3fe93f;
+  border: none;
+}
+
+.crud-table h2 {
+  text-align: center;
+  color: #6c63ff;
 }
 table {
   border-collapse: separate;
   border-spacing: 0 10px;
   width: 100%;
-  max-width: 800px;
+  max-width: 500px;
   margin: 20px auto;
-  background-color: #fff;
+  background-color: #f7f7f7;
   color: #333;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 10px;
   overflow: hidden;
   font-size: large;
 }
 
-th{
-  color:lightcoral;
+th {
+  color: #333;
 }
 
 table th,
 table td {
-  padding: 4px;
+  padding: 8px;
   width: auto;
-  text-align: left;
-  border: 1px solid #ddd;
   text-align: center;
+  border: 1px solid #ddd;
   font-weight: 600;
 }
 
 table th {
-  background-color: #f9f9f9;
+  background-color: #6c63ff;
   font-weight: bold;
-}
-
-.btn-edit{
-   width: 100%;
-   color: rgb(252, 252, 252);
-   background-color:lightgreen;
-}
-
-.btn-edit:hover{
- color: rgb(255, 255, 255);
- background-color:  rgb(63, 233, 63);
-}
-
-
-.btn-trash{
-  width: 100%;
-  border: none;
-  background-color:lightcoral;
-  color: white;
- 
-}
-
-
-.btn-trash:hover{
-  color: rgb(255, 255, 255);
-  background-color: red;
-}
-
-
-
-.btn-save {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: none;
-  border-radius: 5px;
-  background-color: "${isEditing ? 'lightgreen' : '#6c63ff'}";
   color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  cursor: pointer;
 }
 
-.btn-add {
+.btn-edit {
   width: 100%;
-  padding: 10px;
-  margin: 10px 0;
   border: none;
-  border-radius: 5px;
-  background-color: "${isEditing ? '#6c63ff' : 'red'}";
+  padding: 5px;
+  background: transparent;
+  color: #333;
+}
+
+.btn-edit:hover {
   color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  cursor: pointer;
+  transition: 0.3s;
+  background-color: #24b859;
+  border-radius: 3rem;
+}
+
+.btn-trash {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #333;
+  transition: 0.3s;
+  padding: 5px;
+  border-radius: 3rem;
+}
+
+.btn-trash:hover {
+  color: #fff;
+  background-color: #ff0000;
+  transition: 0.3s;
+}
+
+body {
+  background-color: #222;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.animate {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  animation-name: slideInFromLeft;
 }
